@@ -1,0 +1,245 @@
+git init
+El comando git init crea un nuevo repositorio Git o reinicia uno existente.  
+Cuando ejecutas el comando, tu directorio actual se convierte en un repositorio Git, lo que te permite seguir sus cambios. 
+
+git clone <copied_URL>
+copiar un repositorio Git de una ubicación a otra
+
+git status
+muestra detalles sobre: 
+archivos modificados (archivos modificados pero no puestos en escena).
+archivos no rastreados (archivos que Git no está rastreando).
+archivos preparados (archivos preparados y listos para ser enviados). 
+
+
+git add 
+El comando git add añade tus cambios al área de preparación. 
+Indica a Git que el repositorio debe actualizar estos cambios una vez que el usuario ejecute el comando confirmar.
+-git add . : escenifica los cambios realizados en todos los archivos. 
+-git add : incluye sólo los cambios realizados en un archivo concreto del área de preparación.
+
+git commit
+Un comando git commit guarda los cambios que has realizado (o puesto en escena) en el repositorio local. 
+Cada vez que ejecutas git commit, Git crea una instantánea de tu repositorio en ese momento. 
+Esto te permite volver a una confirmación anterior siempre que sea necesario.
+git commit -m "commit_message"
+
+
+git remote add
+el comando git remote add crea una conexión entre tu repositorio Git local y el repositorio Git remoto, 
+permitiéndote introducir y extraer cambios entre ellos:
+
+git remote add <repo_name> <remote_url>
+repo_name: un apodo para el repositorio remoto("origen" por defecto).
+remote_url: URL del repositorio remoto.
+
+
+
+git push
+El comando git push sincroniza tu repositorio remoto con el repositorio local. 
+Una vez que ejecutes este comando,el repositorio remoto reflejará todos los cambios que hayas confirmado localmente.
+git push <remote> <branch>
+
+Powered By 
+remote: alias del repositorio remoto ("origen" por defecto).
+branch: nombre de la rama que quieres empujar.
+
+Hay algunas variaciones de git push, por ejemplo:
+
+git push ---all origin
+El comando anterior empuja todas tus ramas locales al repositorio remoto.
+
+git push --force origin main
+El comando anterior sobrescribe la rama main del repositorio remoto con tu rama local main. 
+Ten cuidado al utilizarlo, ya que la rama principal remota podría perder todo su historial. 
+
+git pull
+El comando git pull recupera y fusiona los cambios del repositorio remoto con los del repositorio local. 
+
+El comando git pull combina dos comandos: git fetch y git merge. 
+ 
+git fetch 
+recupera todos los cambios del repositorio remoto, incluidos los nuevos commits, etiquetas y ramas. 
+A continuación, se ejecuta git merge, integrando esos cambios en la rama local actual. 
+
+
+git pull origin feature-branch
+El comando anterior obtiene los datos de feature_branch en el repositorio remoto y los envía a tu rama local actual. 
+
+git recuperar (git fetch)
+El comando git fetch te permite revisar los cambios en el repositorio remoto antes de fusionarlos en el local.
+Descarga los cambios y actualízalos en ramas de seguimiento remotas. 
+Para los que no estén familiarizados, las ramas de seguimiento remoto son copias de ramas de repositorios remotos. 
+
+git fetch origin
+descarga los cambios en el repositorio remoto y los actualiza en ramas de seguimiento remotas bajo origin:
+
+
+Bifurcar y fusionar en Git
+La ramificación Git permite a los desarrolladores trabajar de forma independiente en nuevas funciones o correcciones de errores
+sin afectar al repositorio principal. Una vez que los cambios están listos, la fusión los integra en la base de código principal. 
+Exploremos los comandos clave que intervienen en este proceso.
+
+git branch (rama git)
+El comando git branch lista, crea o elimina ramas. Una rama es otra versión de tu repositorio. 
+
+Si estás desarrollando una nueva función para tu aplicación, puedes crear y trabajar en una nueva rama.
+Puedes fusionar todo a la rama principal una vez que todo esté listo y probado. 
+Esto te permite trabajar en nuevas funciones de forma independiente, sin alterar directamente la línea principal.  
+
+git branch: muestra la lista de todas las ramas del repositorio.
+git branch : crea una nueva rama llamada "nombre_rama".
+git branch -d : Elimina la rama llamada "nombre_rama".
+
+
+git checkout
+Elcomando  git checkout puede hacer dos cosas: cambiar entre ramas o restaurar archivos a un estado anterior. 
+el comando git checkout branch_name se utilizaba para cambiar de tu rama actual a otra. 
+Pero no era sólo para cambiar de la existente; también puedes crear y cambiar a una nueva rama.
+
+El siguiente comando crea una nueva rama llamada "rama_característica" y cambia a ella:
+git checkout -b rama_característica
+Sin embargo, en la última versión de Git, git checkout se sustituye por git switch para restaurar archivos. 
+
+Restaurar archivos: Puedes descartar los cambios que hayas hecho en un archivo y restaurarlo a su versión anterior con 
+el siguiente comando.
+git checkout -- <file-name>
+También puedes hacerlo con un archivo de otra rama de la siguiente manera:
+git checkout <branch-name> -- <file-name>
+
+
+git merge(fucionar)
+Si has realizado algún trabajo en una nueva rama, puedes fusionarla con la rama principal utilizando git merge 
+para implementar los cambios. Git realiza la fusión de dos formas:
+Fusión rápida: Supongamos que has creado una nueva rama llamada "feature_x" a partir de la rama principal y has trabajado en ella.
+Si la rama principal no ha tenido ninguna actualización desde que creaste "feature_x", en lugar de confirmar los cambios de 
+"feature_x" en la rama principal, Git actualiza la rama principal para que apunte a la última versión de "feature_x". 
+En este caso, no se crea ninguna nueva confirmación de fusión. 
+Fusión a tres bandas: Si tanto "feature_x" como la rama principal tienen ediciones, Git combina los cambios y crea una nueva confirmación de fusión en la rama principal. 
+Por ejemplo: 
+
+      C---D---F (feature-branch)
+     /
+A---B---E---G (main)
+
+En el commit B, se crea la rama de características C. La rama principal tiene commits adicionales, E y G, 
+incluso después de crear la rama de características. Por lo tanto, la característica se fusiona con la principal, 
+creando una nueva confirmación de fusión M como sigue:
+
+      C---D---F (feature-branch)
+     /         \         
+A---B---E---G---M (main)
+
+
+git rebase
+esta es otra forma de integrar cambios entre ramas, pero funciona de forma distinta a git merge. 
+Fusionar conserva el historial completo tanto de la rama principal como de la rama de características. 
+Rebase, por otro lado, sobrescribe el historial de confirmaciones para hacerlo lineal y limpio.
+
+Además, fusionar requiere una confirmación de fusión adicional, mientras que rebase no crea ninguna confirmación nueva. 
+Git rebase realiza dos pasos: 
+
+Cambiar a una rama de características 
+Rebase en main.
+Por ejemplo:
+
+      C---D---F (feature-branch)
+     /
+A---B---E---G (main)
+
+
+Paso 1: ejecuta git checkout feature_branch.
+Paso 2: Ejecuta git rebase main: Mover toda la rama de características a la rama principal reaplicando los commits C, D, F como C’, D’, y F’ 
+sobre el último commit G en la rama principal. Esto crea un historial de confirmaciones lineal como el siguiente
+A---B---E---G---C'---D'---F' (main)
+
+Como a menudo se confunden las operaciones de fusión y de cambio de base, aquí tienes un resumen de las diferencias:
+
+Fusiona 
+Conserva todo el historial de confirmaciones de ambas ramas.
+Se crea una confirmación de fusión adicional.
+La estructura de la rama es visible en el historial.
+Utilízalo para hacer un seguimiento del historial de confirmaciones de cada rama, incluyendo una cronología de cuándo se fusionaron.
+
+
+Rebase
+Sobrescribe el historial de confirmaciones para hacerlo lineal.
+No se crean confirmaciones adicionales.
+Hace que el historial de confirmaciones parezca una línea recta.
+Utilízalo cuando necesites un historial de confirmaciones claro y fácil de entender. 
+
+git log
+El comando git log muestra todo el historial de confirmaciones de tu rama actual. 
+Incluye cuatro campos clave: confirmación, autor, fecha y mensaje de confirmación. 
+Compromiso: un identificador único.
+Autor: nombre y correo electrónico de la persona.
+Fecha: La fecha y hora en que se confirmó el cambio.
+Mensaje de confirmación: descripción de la confirmación. 
+
+
+git diff
+La página git diff muestra las diferencias entre varios estados de tu repositorio, ya sea comparando tu directorio actual con el área de preparación, 
+el área de preparación con la última confirmación, o incluso dos archivos o ramas, lo que especifiques.
+
+git diff - muestra la diferencia entre tu directorio de trabajo actual y el área de preparación. 
+git diff -- cached: muestra las diferencias entre la zona de preparación y la última confirmación.
+git diff commit1 commit2 - la diferencia entre commit 1 y commit 2.
+git diff branch1..branch2 - compara las diferencias entre branch 1 y branch 2.
+
+
+git reset
+El comando git reset te permite deshacer cambios restableciendo el HEAD actual a un estado anterior específico. 
+Para mover el HEAD a un commit anterior, tienes tres variantes: "suave", "mixta" y "dura" para utilizarlas con el comando reiniciar. 
+
+Suave: retrocede a una confirmación anterior pero mantiene los cambios actuales, permitiéndote volver a confirmarlos más tarde cuando sea necesario. 
+git reset --soft HEAD~1
+
+Mixto: retrocede a una confirmación anterior y elimina los cambios de la confirmación actual del área del escenario. 
+Sin embargo, esos cambios no se verán afectados en tu directorio de trabajo.
+git reset --mixed HEAD~1
+
+Duro: Esto apuntará a una confirmación anterior, a la vez que eliminará las actualizaciones de la confirmación actual del directorio de trabajo 
+y del área de preparación. 
+git reset --hard HEAD~1
+
+
+git stash
+Esto guarda temporalmente tus cambios no comprometidos y restablece tu directorio de trabajo al último estado comprometido. 
+
+git stash pop
+Si has guardado algunos cambios en el pasado y quieres incluirlos en tu directorio de trabajo, utiliza el comando git stash pop. 
+Esto aplicará los últimos cambios almacenados al directorio actual y los eliminará de la lista de cambios almacenados. 
+
+git clean
+El comando git clean borra los archivos sin seguimiento del repositorio Git. 
+¡Utiliza el comando git clean -n para previsualizar lo que se borrará antes de ejecutar el comando borrar!
+
+
+Mando               Descripción                                                                                             Ejemplo de uso 
+git init            Inicializa un nuevo repositorio Git.                                                                        git init
+git clone           Clona un repositorio Git existente.                                                                         git clone
+git status          comprueba el estado de archivos                                                                             git status
+git add             añade archivos al area de preparacion                                                                       git add 
+git commit          consigna los cambios por etapas en el repo local                                                            git commit -m 'Commit message'
+git remote add      añade una conexion de repositorio remoto                                                                    git remote add origin
+git push            Empuja los cambios confirmados a un repositorio remoto.                                                     git push origin
+git pull            Obtener y fusionar cambios de un repositorio remoto.                                                        git pull origin
+git fetch           Obtener cambios de un repositorio remoto sin fusionar.                                                      git fetch origin
+git branch          Lista,crea o elimina ramas                                                                                  git branch
+git checkout        Cambiar entre ramas o restaurar archivos (método antiguo).                                                  git checkout
+git switch          Pasar de una rama a otra (preferible en versiones más recientes).                                           git switch
+git merge           Fusiona los cambios de una rama en otra.                                                                    git merge
+git rebase          Vuelve a aplicar los commits de una rama a otra para tener un historial más limpio.                         git rebase
+git log             ver historial de confirmaciones                                                                             git log 
+git diff            Muestra las diferencias entre los distintos estados del depósito.                                           git diff 
+git reset           Deshacer los cambios restableciendo HEAD a un estado anterior.                                              git reset --soft HEAD~1
+git stash           Guarda temporalmente los cambios no comprometidos y restablece el directorio de trabajo.                    git stash
+git stash pop       Aplica los últimos cambios almacenados al directorio de trabajo.                                            git stash pop
+git clean           Elimina los archivos sin seguimiento del repositorio.                                                       git clean
+git config          Configura las opciones de Git a nivel de sistema, global o local.                                           git config --global user.name 'Your Name'
+
+
+
+
+
+
