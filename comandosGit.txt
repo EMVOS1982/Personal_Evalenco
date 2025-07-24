@@ -1,0 +1,24 @@
+
+Mando               Descripción                                                                                             Ejemplo de uso 
+git init            Inicializa un nuevo repositorio Git.                                                                        git init
+git clone           Clona un repositorio Git existente.                                                                         git clone
+git status          comprueba el estado de archivos                                                                             git status
+git add             añade archivos al area de preparacion                                                                       git add 
+git commit          consigna los cambios por etapas en el repo local                                                            git commit -m 'Commit message'
+git remote add      añade una conexion de repositorio remoto                                                                    git remote add origin
+git push            Empuja los cambios confirmados a un repositorio remoto.                                                     git push origin
+git pull            Obtener y fusionar cambios de un repositorio remoto.                                                        git pull origin
+git fetch           Obtener cambios de un repositorio remoto sin fusionar.                                                      git fetch origin
+git branch          Lista,crea o elimina ramas                                                                                  git branch
+git checkout        Cambiar entre ramas o restaurar archivos (método antiguo).                                                  git checkout
+git switch          Pasar de una rama a otra (preferible en versiones más recientes).                                           git switch
+git merge           Fusiona los cambios de una rama en otra.                                                                    git merge
+git rebase          Vuelve a aplicar los commits de una rama a otra para tener un historial más limpio.                         git rebase
+git log             ver historial de confirmaciones                                                                             git log 
+git diff            Muestra las diferencias entre los distintos estados del depósito.                                           git diff 
+git reset           Deshacer los cambios restableciendo HEAD a un estado anterior.                                              git reset --soft HEAD~1
+git stash           Guarda temporalmente los cambios no comprometidos y restablece el directorio de trabajo.                    git stash
+git stash pop       Aplica los últimos cambios almacenados al directorio de trabajo.                                            git stash pop
+git clean           Elimina los archivos sin seguimiento del repositorio.                                                       git clean
+git config          Configura las opciones de Git a nivel de sistema, global o local.                                           git config --global user.name 'Your Name'
+
