@@ -1,0 +1,23 @@
+name: "deploy-codigofacilito"
+
+#trigger --> disparador
+on:
+  #como
+  push:
+    #sobre que
+    branches: ["main"] 
+
+
+jobs:
+  deploy-codigofacilito:
+    # ahora agregamos los steps
+    runs-on: ubuntu-latest
+    # se pueden tener N job
+    #send-notifications:
+    #test-code:
+
+    steps:
+      - run: echo "hacemos pull del codigo"
+      - run: echo "correr migraciones"
+      - run: echo "generar binario"
+      - run: echo "publicar version" 
