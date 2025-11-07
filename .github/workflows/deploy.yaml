@@ -1,13 +1,22 @@
-name: Deploy of server
+name: Deploy of server #nombre del workflow
 
-on:
+on:  	                 #trigger --> disparador o evento
   push:
-    branches: [ master ]
+    branches: [ master ]  # en donde se va a ejecutar el evento
 
-jobs:
+jobs:									    # programacion de evento 
   first_job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest   # ruunners en que sistema operativo de la maquina virutal se correra
 
-    steps:
+    steps:									#tareas a realizar que estan en los job 
       - name: erika valencia
         run: echo "hola erika valencia"
+
+
+  secund_job:
+   needs: first_job         # indica que depende de otro job en este caso first_job, lo cual indica que se ejecutar despues de finalizada su dependencia
+   runs-on: ubuntu-latest
+
+   steps:
+    - name: paula  valencia
+      run: echo "hola Paula valencia"
