@@ -1,22 +1,33 @@
 name: Deploy of server #nombre del workflow
 
 on:  	                 #trigger --> disparador o evento
-  push:
-    branches: [ master ]  # en donde se va a ejecutar el evento
+push:
+  branches: [ master ]  # en donde se va a ejecutar el evento
 
 jobs:									    # programacion de evento 
-  first_job:
-    runs-on: ubuntu-latest   # ruunners en que sistema operativo de la maquina virutal se correra
+first_job:
+  name: El primer acction
+  runs-on: ubuntu-latest   # ruunners en que sistema operativo de la maquina virutal se correra
 
-    steps:									#tareas a realizar que estan en los job 
-      - name: erika valencia
-        run: echo "hola erika valencia"
+  env:
+  NAME: evalenco
+
+  steps:									#tareas a realizar que estan en los job 
+    - name: Workin dir
+      run: ls -la
+    - name: Action
+      uses: action/chekout$v4
+    - name: workin dir after action
+      run: ls -la
+    - name: Imprimir Variable
+      run: echo "hola $NAME"
 
 
-  secund_job:
-   needs: first_job         # indica que depende de otro job en este caso first_job, lo cual indica que se ejecutar despues de finalizada su dependencia
-   runs-on: ubuntu-latest
+secund_job:
+if: ${{github.ref == 'refs/heads/master' }}  # esta linea usa contextos para poner una condicion al job , ya que solo sera ejecutado si esta en la rama master
+needs: first_job         # indica que depende de otro job en este caso first_job, lo cual indica que se ejecutar despues de finalizada su o sus dependencias y se ponen en lista
+runs-on: ubuntu-latest
 
-   steps:
-    - name: paula  valencia
-      run: echo "hola Paula valencia"
+steps:
+  - name: paula  valencia
+    run: echo "hola Paula valencia"
