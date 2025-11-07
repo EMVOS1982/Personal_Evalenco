@@ -2,12 +2,12 @@ name: Deploy of server
 
 on:
   push:
-    branches: master
-		
-jobs:
-	first_job:
-		runs_on: ubuntu-latest
+    branches: [ master ]
 
-		steps:
-			- name: erika valencia
-				run: echo "hola erika valencia" 
+jobs:
+  first_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: erika valencia
+        run: echo "hola erika valencia"
