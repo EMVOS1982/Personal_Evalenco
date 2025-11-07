@@ -1,6 +1,8 @@
 name: Deploy of server
 
-on:	push  
+on:	
+	push:
+		branches: ["master"] 
 		
 jobs:
 	first_job:
