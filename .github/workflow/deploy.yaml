@@ -1,23 +1,13 @@
-name: "deploy-codigofacilito"
+name: Deploy of server
 
-#trigger --> disparador
 on:
-  #como
-  push:
-    #sobre que
-    branches: ["main"] 
-
+	push:
+		branches:["main"]
 
 jobs:
-  deploy-codigofacilito:
-    # ahora agregamos los steps
-    runs-on: ubuntu-latest
-    # se pueden tener N job
-    #send-notifications:
-    #test-code:
+	first_job:
+		runs_on: ubuntu-latest
 
-    steps:
-      - run: echo "hacemos pull del codigo"
-      - run: echo "correr migraciones"
-      - run: echo "generar binario"
-      - run: echo "publicar version" 
+		steps:
+			- name: erika valencia 
+				run: echo "hola erika" 
