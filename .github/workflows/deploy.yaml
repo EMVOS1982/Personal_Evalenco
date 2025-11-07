@@ -1,6 +1,6 @@
 name: Deploy of server
 
-on:	push
+on:	push  
 		
 jobs:
 	first_job:
@@ -8,4 +8,4 @@ jobs:
 
 		steps:
 			- name: erika valencia
-				run: echo "hola erika" 
+				run: echo "hola erika valencia" 
