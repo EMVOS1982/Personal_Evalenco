@@ -23,4 +23,4 @@ jobs:
 
    steps:
     - name: paula  valencia
-      run: echo "hola Paula valencia ${{gitub.ref}}"
+      run: echo "hola Paula valencia ${{github.ref}}"
