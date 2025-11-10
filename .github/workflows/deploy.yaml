@@ -12,21 +12,14 @@ jobs:
     outputs:
      salida: "${{ steps.step_1.outputs.my_variable }}"
 
-    steps:									#tareas a realizar que estan en los job 
-      - name: Working dir
-        id: step_1  # para poder usar la informacin de otros step, debemos hacerlo creando un id al step
-        run: echo "my_variable=hola mundo" >>  $GITHUB_OUTPUT
+    steps:
+      - name: Generar archivo
+        run: |
+         echo "archivo prueba, hola" >> test.log
 
-      - name: obtener mensaje 
-        run: echo "${{ steps.step_1.outputs.my_variable }}"
+      - name: subir artefacto
+        uses: actions/upload-artifact@v4
+        whit:
+         name: archivo-test
+         path: test.log 
 
-  secund_job:
-   needs: first_job         # indica que depende de otro job en este caso first_job, lo cual indica que se ejecutar despues de finalizada su dependencia
-   runs-on: ubuntu-latest
-
-   env: 
-      SALIDA: ${{ needs.first_job.outputs.salida}}
-
-   steps:
-    - name: paula  valencia
-      run: echo "$SALIDA "
