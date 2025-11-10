@@ -12,14 +12,16 @@ jobs:
     outputs:
      salida: "${{ steps.step_1.outputs.my_variable }}"
 
+# para usar artefactos es necesario crear un step que corra aluna actionm en este caso crea un archvi de log
     steps:
       - name: Generar archivo
         run: |
          echo "archivo prueba, hola" >> test.log
 
+#luego estamos creado otro step que cargue ese archivo por medio de un artefacto usando uses con algunos paremtros declarados en el whit
       - name: subir artefacto
         uses: actions/upload-artifact@v4
-        whit:
+        with:
          name: archivo-test
          path: test.log 
 
