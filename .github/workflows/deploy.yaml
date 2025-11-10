@@ -15,7 +15,7 @@ jobs:
         run: echo "my_variable=hola mundo" >>  $GITHUB_OUTPUT
 
       - name: obtener mensaje 
-        run: echo "${{ stpes.step_1.outputs.my_variable }}"
+        run: echo "${{ steps.step_1.outputs.my_variable }}"
 
   secund_job:
    needs: first_job         # indica que depende de otro job en este caso first_job, lo cual indica que se ejecutar despues de finalizada su dependencia
