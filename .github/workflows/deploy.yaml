@@ -35,6 +35,6 @@ jobs:
        with: 
         name: archivo-test
         
-     - name: cat file
-       run: cat  test.log 
+     -  name: cat file
+        run: cat test.log 
 
