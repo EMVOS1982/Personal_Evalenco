@@ -25,3 +25,12 @@ jobs:
          name: archivo-test
          path: test.log 
 
+  segundo_job:
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: Descargar artefacto
+       uses: actions/download-artifact@v4
+       with: 
+        name: archivo-test
+
