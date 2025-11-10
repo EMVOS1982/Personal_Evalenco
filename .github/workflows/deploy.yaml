@@ -17,7 +17,7 @@ jobs:
         run: ls -al
     ## las acctiones se utilizan a nivel de step   
       - name: acciones
-        uses: action/chekout@v4     #consta de 3 partes nombre del propriario/nombre de la acction y por ulitmo la version a usar anteponiendo una @ en este caso el accgtion clona la rama 
+        uses: actions/checkout@v4     #consta de 3 partes nombre del propriario/nombre de la acction y por ulitmo la version a usar anteponiendo una @ en este caso el accgtion clona la rama 
         #whit:  #permite recibir parametros para usar la acction
          #php-version: ${{ matrix.php}}
          #tools: composer
