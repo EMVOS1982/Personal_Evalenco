@@ -26,7 +26,7 @@ jobs:
          path: test.log 
 
   segundo_job:
-    runs-on: ubuntu-la/test
+    runs-on: ubuntu-latest
     needs: first_job
 
     steps:
@@ -35,6 +35,6 @@ jobs:
        with: 
         name: archivo-test
         
-     -  name: cat file
-        run: cat test.log 
+     - name: cat file
+       run: cat test.log 
 
