@@ -9,12 +9,13 @@ jobs:
     name: Tutorial codigo facilito
     runs-on: ubuntu-latest   # ruunners en que sistema operativo de la maquina virutal se correra
 
-    env:
-     NAME: CodigoFacilito #este seria el nombr del job 
-
     steps:									#tareas a realizar que estan en los job 
       - name: Working dir
-        run: echo $GITHUB_OUTPUT
+        id: step_1  # para poder usar la informacin de otros step, debemos hacerlo creando un id al step
+        run: echo "my_variable=hola mundo" >>  $GITHUB_OUTPUT
+
+      - name: obtener mensaje 
+        run: echo "{{ stpes.step_1.outputs.my_variable }}"
 
   secund_job:
    needs: first_job         # indica que depende de otro job en este caso first_job, lo cual indica que se ejecutar despues de finalizada su dependencia
