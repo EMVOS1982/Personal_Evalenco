@@ -6,11 +6,15 @@ on:
 
 jobs:
   first_job:
+    name: Tutorial codigo facilito
     runs-on: ubuntu-latest   # ruunners en que sistema operativo de la maquina virutal se correra
+
+    env:
+     NAME: CodigoFacilito #este seria el nombr del job 
 
     steps:									#tareas a realizar que estan en los job 
       - name: erika valencia
-        run: echo "hola erika valencia"
+        run: echo "Aprendiendo con... $NAME"
 
 
   secund_job:
@@ -19,4 +23,4 @@ jobs:
 
    steps:
     - name: paula  valencia
-      run: echo "hola Paula valencia"
+      run: echo "hola Paula valencia ${{gitub.ref}}"
