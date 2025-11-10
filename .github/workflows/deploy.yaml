@@ -9,6 +9,9 @@ jobs:
     name: Tutorial codigo facilito
     runs-on: ubuntu-latest   # ruunners en que sistema operativo de la maquina virutal se correra
 
+    outputs:
+     salida: "${{ steps.step_1.outputs.my_variable }}"
+
     steps:									#tareas a realizar que estan en los job 
       - name: Working dir
         id: step_1  # para poder usar la informacin de otros step, debemos hacerlo creando un id al step
@@ -21,6 +24,9 @@ jobs:
    needs: first_job         # indica que depende de otro job en este caso first_job, lo cual indica que se ejecutar despues de finalizada su dependencia
    runs-on: ubuntu-latest
 
+   env: 
+      SALIDA: ${{ needs.first_job.outputs.salida}}
+
    steps:
     - name: paula  valencia
-      run: echo "hola Paula valencia ${{github.ref}}"
+      run: echo "$SALIDA "
