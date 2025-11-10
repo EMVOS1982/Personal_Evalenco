@@ -14,18 +14,7 @@ jobs:
 
     steps:									#tareas a realizar que estan en los job 
       - name: Working dir
-        run: ls -al
-    ## las acctiones se utilizan a nivel de step   
-      - name: acciones
-        uses: actions/checkout@v4     #consta de 3 partes nombre del propriario/nombre de la acction y por ulitmo la version a usar anteponiendo una @ en este caso el accgtion clona la rama 
-        #whit:  #permite recibir parametros para usar la acction
-         #php-version: ${{ matrix.php}}
-         #tools: composer
-         #coverage: none
-
-
-      - name: working dir affter acction
-        run: ls -al
+        run: echo $GITHUB_OUTPUT
 
   secund_job:
    needs: first_job         # indica que depende de otro job en este caso first_job, lo cual indica que se ejecutar despues de finalizada su dependencia
